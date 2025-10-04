@@ -1,0 +1,131 @@
+\documentclass{amsproc}
+
+
+%%----------------------------
+%%%% packages
+%%----------------------------
+
+
+
+\usepackage[utf8]{inputenc}   % For UTF-8 encoding
+\usepackage{amssymb}            % AMS Symbols
+\usepackage{amsmath,amsthm}     % AMS for Maths equations
+\usepackage{bm}                 % bold math
+\usepackage{braket}             % Bra-Ket Notation
+\usepackage{subcaption}
+\usepackage[a4paper,margin=26mm]{geometry}
+\usepackage{graphicx}           %Graphics & Images
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{hyperref}           %Hyperlinks
+
+
+%%----------------------------
+%%%% new-commands
+%%----------------------------
+
+
+\newcommand{\ITensor}{\texttt{ITensor}}
+\newcommand{\julia}{\texttt{Julia}}
+
+%%----------------------------
+%%%% bibliography management
+%%----------------------------
+
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  breaklines=true}
+
+\usepackage[
+  backend=biber,
+  style=phys,
+  doi=true,
+  eprint=true,
+  url=false,
+]{biblatex}
+
+\input{./.src/.bib/.bib.tex}      
+
+
+%%---------------------------
+%%%% Titles:
+%%---------------------------
+
+
+\title{Discrete Time Crystal: The Vanilla Unitary as a Brickwall Circuit}                        % model-dtc
+
+%\title{Project Details: Charcterization of the Time-Crystal Criticality}                        % proposal-dtc
+%\title{Physics of good Q-LDPC Codes}
+
+
+\author{Sagnik Ghosh}
+\address{Physikalisches Institut der Universit{\"a}t Bonn, Nu{\ss}allee 12, 53115 Bonn, Germany}
+
+
+\date{December 27, 2023}            % model-dtc
+
+
+%%---------------------------
+%%%% Main Doc:
+%%---------------------------
+
+\begin{document}
+
+
+\newtheorem{defn}[]{Definition}
+\newtheorem{obs}[]{Observation}
+\newtheorem{lem}[]{Lemma}
+\newtheorem{thm}[]{Theorem}
+\newtheorem{corr}[]{Corollary}
+\newtheorem{conj}[]{Conjecture}
+\newtheorem{prop}[]{Property}
+\newtheorem{appr}[]{Approximation}
+\newtheorem{claim}[]{Claim}
+\newtheorem{notes}[]{Note}
+
+
+
+\includegraphics[scale=0.03]{./.src/header/UNI_Bonn_Logo_Standard_RZ_Office.jpg}
+%\includegraphics[scale=0.95]{internal-lhead.png}
+%\includegraphics[scale=0.83]{internal-lhead-detailed.jpeg}
+
+\vspace{6mm}
+
+\maketitle
+
+%%----------------------------
+%% DTC-Model
+%%----------------------------
+
+\input{DTC/model.tex}                   % model-dtc
+
+
+
+%%----------------------------
+%% DTC-Propoal
+%%----------------------------
+
+
+
+%\input{proposal/intro}             % proposal-dtc 
+%\input{proposal/processing}        % proposal-dtc 
+%\input{proposal/connecting}        % proposal-dtc 
+%\input{proposal/enabling}          % proposal-dtc 
+
+
+
+%%----------------------------
+%% QLDPC
+%%----------------------------
+
+%\input{Q-LDPC/defn}
+
+
+%%----------------------------
+%% End:
+%%----------------------------
+
+\printbibliography
+
+\end{document}

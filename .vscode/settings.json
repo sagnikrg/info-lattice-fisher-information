@@ -1,0 +1,26 @@
+
+{
+  // Hide LaTeX auxiliary files globally
+  "files.exclude": {
+    "**/*.out": true,
+    "**/*.aux": true,
+    "**/*.log": true,
+    "**/*.blg": true,
+    "**/*.bcf": true,
+    "**/*.xml": true,
+    "**/*.bbl": true,
+    "**/*.toc": true,
+    "**/*.bat": true,
+
+    // Hide everything inside tex/src/header/ (but keep folder visible)
+    "tex/.src/header/**": true,
+
+    // Hide a specific script from workspace root
+    "gitpush.bat": true,
+    ".gitignore": true,
+    ".gitattributes": true,
+    // Hide the .git and .vscode folders themselves
+    ".git": true,
+    ".vscode": true
+  }
+}

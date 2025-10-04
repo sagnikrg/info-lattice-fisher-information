@@ -1,0 +1,51 @@
+##---- Git Ignores the following ----##
+
+#-----code------
+
+*.zip
+*.tar.gz
+*.h5
+*.hdf5
+*.ai
+*.mp4
+*.png
+*jpg
+*.eps
+#*.bat
+*ipynb
+#-----tex-------
+
+*.aux
+*.log
+*.out
+*.bcf
+*.xml
+*.blg
+*.bbl
+*.toc
+
+
+
+##----Still Backing UP------
+
+# --- test codes and plot scripts------
+
+!code/scripts/*.ipynb
+!code/test/*.ipynb
+
+
+# ------data------
+!data/processed/*
+
+
+# -----images------
+
+!tex/.src/images/*
+!tex/plots/*
+
+
+
+
+
+
+  
