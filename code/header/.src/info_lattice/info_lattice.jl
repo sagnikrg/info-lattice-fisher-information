@@ -4,7 +4,7 @@
 
 
 
-function entanglement_entropy(eigenstate)
+function entanglement_entropy(eigenstate::AbstractVector)
     # Compute the density matrix of the eigenstate
     density_matrix = eigenstate * eigenstate'
 
@@ -32,7 +32,7 @@ end
 
 function von_neumann_entropy(eigenvalues::AbstractVector{<:Real}; base::Real = 2.0)  # add cut off
     # Filter out zero eigenvalues to avoid log(0) errors
-    valid_eigenvalues = replace_small_values(valid_eigenvalues)
+    valid_eigenvalues = replace_small_values(eigenvalues)
    
     # Compute entropy
     entropy = -sum(λ -> λ * log(λ) / log(base), valid_eigenvalues)
@@ -66,7 +66,7 @@ function site_bit(Psi, i, l, L)
     psi=reshape(psi_permuted,(2^(L-l),2^l))
     
     rho=psi'*psi
-    eigvals, eigvecs=real(eigen(rho))
+    eigvals, eigvecs=eigen(rho)
     #von_neumann_entropy(eigvals)
     
     return l-von_neumann_entropy(eigvals)
