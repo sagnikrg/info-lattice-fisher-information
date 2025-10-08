@@ -6,7 +6,7 @@ using GeometryBasics#: Point2f
 
 function draw_info_lattice(infolattice)
     
-    cmap=:deep
+    cmap=Reverse(:navia)
 
 
     fig = Figure(size = (800, 600), fontsize = 20)
