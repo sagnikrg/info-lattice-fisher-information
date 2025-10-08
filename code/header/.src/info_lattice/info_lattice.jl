@@ -30,9 +30,9 @@ function replace_small_values(arr::Vector{Float64})
 end
 
 
-function von_neumann_entropy(eigenvalues::AbstractVector{<:Real}; base::Real = 2.0)  # add cut off
+function von_neumann_entropy(eigenvalues::AbstractVector; base::Real = 2.0)  # add cut off
     # Filter out zero eigenvalues to avoid log(0) errors
-    valid_eigenvalues = replace_small_values(eigenvalues)
+    valid_eigenvalues = replace_small_values(real.(eigenvalues))
    
     # Compute entropy
     entropy = -sum(λ -> λ * log(λ) / log(base), valid_eigenvalues)
