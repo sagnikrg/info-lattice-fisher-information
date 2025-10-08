@@ -17,10 +17,23 @@ function entanglement_entropy(eigenstate)
     return entropy
 end
 
+function replace_small_values(arr::Vector{Float64})
+    new_arr = similar(arr)  # Create a new array of the same size and type
+    for i in eachindex(arr)
+        if arr[i] < 1e-15
+            new_arr[i] = 1e-15
+        else
+            new_arr[i] = arr[i]
+        end
+    end
+    return new_arr
+end
 
-function von_neumann_entropy(eigenvalues::AbstractVector{<:Real}; base::Real = 2.0) 
+
+function von_neumann_entropy(eigenvalues::AbstractVector{<:Real}; base::Real = 2.0)  # add cut off
     # Filter out zero eigenvalues to avoid log(0) errors
-    valid_eigenvalues = filter(x -> x > 0, eigenvalues)
+    valid_eigenvalues = replace_small_values(valid_eigenvalues)
+   
     # Compute entropy
     entropy = -sum(λ -> λ * log(λ) / log(base), valid_eigenvalues)
     return entropy
@@ -53,7 +66,7 @@ function site_bit(Psi, i, l, L)
     psi=reshape(psi_permuted,(2^(L-l),2^l))
     
     rho=psi'*psi
-    eigvals, eigvecs=eigen(rho)
+    eigvals, eigvecs=real(eigen(rho))
     #von_neumann_entropy(eigvals)
     
     return l-von_neumann_entropy(eigvals)
