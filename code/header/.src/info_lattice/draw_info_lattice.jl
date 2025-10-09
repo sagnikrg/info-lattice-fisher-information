@@ -6,6 +6,13 @@ using GeometryBasics#: Point2f
 
 function draw_info_lattice(infolattice)
     
+    L=length(infolattice[1])
+
+    info_lattice_sum=fill(0.0,L)
+    for i in 1:L
+        info_lattice_sum[i]=sum(infolattice[i])
+    end
+
     cmap=Reverse(:navia)
 
 
@@ -36,6 +43,18 @@ function draw_info_lattice(infolattice)
            
                   
     end
+
+    ax_inset = Axis(fig[1, 1],
+    width=Relative(0.2),
+    height=Relative(0.2),
+    halign=0.1,
+    valign=0.9,
+    title="Info per level")
+
+
+    #xlims!(ax_inset, 50, 70)
+    #ylims!(ax_inset, min_price, max_price)
+    line_inset = lines!(ax_inset, 1:L , info_lattice_sum, color=viridis[24], linewidth=2)
     
     Colorbar(fig[1,2] , colormap=cmap,                      #Colorbar
                  ticks = 0.0:0.1:1.0)            #Colorbar ticks
