@@ -19,8 +19,8 @@ function inset_info_lattice(infolattice, ax_inset)
         close(file)
 
         xlims!(ax_inset, 1, L)
-        lines!(ax_inset, 1:L , info_lattice_sum_GUE, color=viridis[12], linewidth=1, linestyle=:dash, label="GUE")
-        lines!(ax_inset, 1:L , L.*(1:L).^(-2).*sum((1:L).^(-2)), color=viridis[32], linewidth=1, linestyle=:dash, label="conformal")
+        lines!(ax_inset, 1:L , info_lattice_sum_GUE, color=reds[12], linewidth=1, linestyle=:dash, label="GUE")
+        lines!(ax_inset, 1:L , (1:L).^(-2).*sum((1:L).^(-2)), color=viridis[42], linewidth=1, linestyle=:dash, label="conformal")
         lines!(ax_inset, 1:L , info_lattice_sum, color=viridis[24], linewidth=2, label="data")
 
     
