@@ -1,20 +1,34 @@
 using CairoMakie
 using GeometryBasics#: Point2f
-#using Colors
+using ColorSchemes
 using HDF5
 
 
-function draw_info_lattice(infolattice, cmap)
+
+
+function inset_info_lattice(infolattice, ax_inset)
+        L=length(infolattice[1])
+
+        info_lattice_sum=fill(0.0,L)
+        for i in 1:L
+            info_lattice_sum[i]=sum(infolattice[i])
+        end
+
+        file = h5open("../header/.src/info_lattice/info_lattice_inset_data.hdf5", "r")
+        info_lattice_sum_GUE=file["GUE/info_lattice_sum/L$(L)"][:] 
+        close(file)
+
+        xlims!(ax_inset, 1, L)
+        lines!(ax_inset, 1:L , info_lattice_sum_GUE, color=viridis[12], linewidth=1, linestyle=:dash, label="GUE")
+        lines!(ax_inset, 1:L , L.*(1:L).^(-2).*sum((1:L).^(-2)), color=viridis[32], linewidth=1, linestyle=:dash, label="conformal")
+        lines!(ax_inset, 1:L , info_lattice_sum, color=viridis[24], linewidth=2, label="data")
+
     
-    L=length(infolattice[1])
-
-    info_lattice_sum=fill(0.0,L)
-    for i in 1:L
-        info_lattice_sum[i]=sum(infolattice[i])
-    end
+end
 
 
 
+function draw_info_lattice(infolattice, cmap)
     fig = Figure(size = (800, 600), fontsize = 12)
     ax = Axis(fig[1, 1], aspect = DataAspect(),
             xlabel=L"i", ylabel=L"l", 
@@ -36,7 +50,7 @@ function draw_info_lattice(infolattice, cmap)
             coord = na * a + nb * b
             poly = Polygon([v + coord for v in hex_vertices])
             p=val
-            # Add rounded effect using stroke
+           # Add rounded effect using stroke
            # poly!(ax, poly,  color = (viridis[36]*(p)+magma[1]*(1-p)),strokewidth = 1.5, strokecolor = :black)
            poly!(ax, poly,  color = val, colormap = cmap, colorrange = (1, 0), strokewidth = 1.5, strokecolor = :black)
         end
@@ -44,27 +58,19 @@ function draw_info_lattice(infolattice, cmap)
                   
     end
 
-    ax_inset = Axis(fig[1, 1],
-    width=Relative(0.28),
-    height=Relative(0.22),
-    halign=0.12,
-    valign=0.95,
-    title="Total bits of information per level",
-    xlabel=L"l",
-    ylabel=L"I(l)",
-    xticks = ((1:(length(infolattice[1]))), string.(1:(length(infolattice[1])))))
 
-
-#inset
-
-        file = h5open("../header/.src/info_lattice/info_lattice_inset_data.hdf5", "r")
-info_lattice_sum_GUE=file["GUE/info_lattice_sum/L$(L)"][:] 
-close(file)
-
-    xlims!(ax_inset, 1, L)
-    lines!(ax_inset, 1:L , info_lattice_sum_GUE, color=viridis[12], linewidth=1, linestyle=:dash, label="GUE")
-    lines!(ax_inset, 1:L , L.*(1:L).^(-2).*sum((1:L).^(-2)), color=viridis[32], linewidth=1, linestyle=:dash, label="conformal")
-    lines!(ax_inset, 1:L , info_lattice_sum, color=viridis[24], linewidth=2, label="data")
+        
+        ax_inset = Axis(fig[1, 1],
+        width=Relative(0.28),
+        height=Relative(0.22),
+        halign=0.12,
+        valign=0.95,
+        title="Total bits of information per level",
+        xlabel=L"l",
+        ylabel=L"I(l)",
+        xticks = ((1:(length(infolattice[1]))), string.(1:(length(infolattice[1])))))
+        
+    inset_info_lattice(infolattice, ax_inset)
 
     axislegend(ax_inset, position=:rt, framevisible=false)
     Colorbar(fig[1,2] , colormap=cmap,                      #Colorbar
@@ -76,8 +82,14 @@ close(file)
 end
 
 
+
+;
+;
 function draw_info_lattice(infolattice)
     cmap=Reverse(:navia)
     fig = draw_info_lattice(infolattice, cmap) 
     return fig
 end
+
+;
+;
