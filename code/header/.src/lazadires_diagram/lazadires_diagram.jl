@@ -99,7 +99,7 @@ function LazadiresDiagram(U)
     # Defining the symmetry operator whose correlation we want to calculate:
     ########################################################
     
-    Xi=copy(kronecker(Z,kronecker(I(localdim),(dim-1))));
+    Xi=copy(kron(Z,kron_power(I(localdim),(dim-1))));
     Corr=real.(conj(transpose(EigvecNew))*Xi*EigvecNew)
     
 Corr

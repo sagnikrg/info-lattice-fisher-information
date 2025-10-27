@@ -85,6 +85,7 @@ end
 
 ;
 ;
+
 function draw_info_lattice(infolattice)
     cmap=Reverse(:navia)
     fig = draw_info_lattice(infolattice, cmap) 

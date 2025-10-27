@@ -14,7 +14,7 @@ include("../functions/kron.jl")
  
 
 function brickwall(FU::Array{Array{ComplexF64,2},1})
-        L=length(FU)
+        L=length(FU)+1;
         
         Indodd=collect(1:2:L-1);    
         Indeven=collect(2:2:L-1);    
@@ -33,6 +33,7 @@ function brickwall(FU::Array{Array{ComplexF64,2},1})
 
         if L%2==1
         
+
         UOdd=copy(kron(kron_list(FU,Indodd)),I(2));
         UEven=copy(kron(I(2),kron_list(FU,Indeven)));
         end

@@ -146,6 +146,27 @@ function info_lattice(Psi, L)
 end
 
 
+
+function info_lattice(U::Matrix{ComplexF64})
+
+ 
+
+    eigvals,eigvecs=eigen(U);
+
+    Psi=eigvecs[1,:]
+    infolattice=info_lattice(Psi, L)
+
+    for i in 2:length(eigvals)
+        Psi=eigvecs[i,:]
+        infolattice+=info_lattice(Psi,L)
+    end
+
+    infolattice=infolattice./length(eigvals)
+end
+
+
+
+
 #### aux
 
 function info_lattice_brickwall(L::Int, theta::Float64, epsilon::Float64)
@@ -166,22 +187,6 @@ function info_lattice_brickwall(L::Int, theta::Float64, epsilon::Float64)
 end
 
 
-function info_lattice(U::Matrix{ComplexF64})
-
- 
-
-    eigvals,eigvecs=eigen(U);
-
-    Psi=eigvecs[1,:]
-    infolattice=info_lattice(Psi, L)
-
-    for i in 2:length(eigvals)
-        Psi=eigvecs[i,:]
-        infolattice+=info_lattice(Psi,L)
-    end
-
-    infolattice=infolattice./length(eigvals)
-end
 
 
 function info_lattice_proj(U::Matrix{ComplexF64}, indlist::Array{Int})

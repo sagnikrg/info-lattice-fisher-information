@@ -10,7 +10,7 @@ function LazadiresDiagramPlot(Corr)
 
 xs = range(-pi, pi, length = 257)              #Axis Range X
 ys = range(-pi, pi, length = 257)              #Axis Range Y    
-zs = Corr                                    #The Heatmap
+zs = abs.(Corr)                                    #The Heatmap
 fig,ax,hm=CairoMakie.heatmap(xs, ys, zs,
      axis=(; xlabel = L"$T\omega$",          #Label for X  
              ylabel = L"$T\omega'$",         #Label for Y

@@ -9,7 +9,7 @@ include("brickwall.jl")
 
 
 
-function brickwall_dtc(L,thetamean,epsilon)
+function circuit_dtc(L,thetamean,epsilon)
   
     
 ###########################################    
@@ -22,7 +22,7 @@ function brickwall_dtc(L,thetamean,epsilon)
  # Background Disorder for the Z field
  #########################################
 
-        h=rand(L)*2pi;              
+        h=rand(L).*2pi;              
         ZRow=RZ.(h);
 
 
@@ -30,7 +30,7 @@ function brickwall_dtc(L,thetamean,epsilon)
  #Constructing the Random Brickwall 
  ###########################################
 
-        J=rand(L)*pi;             #Ising Even Disorder on the two body gates
+        J=rand(L).*pi;             #Ising Even Disorder on the two body gates
 
         fonez=copy(kron(Z,Z))
         ftwox=copy(kron(X,X));    #For the two body XX+YY gates
@@ -43,14 +43,14 @@ function brickwall_dtc(L,thetamean,epsilon)
     FU=fill(fill(0.0*im, 4,4), L-1);
   
 
-    for j in 1:L
+    for j in 1:L-1
     
-            delh=randn(4)*pi/50;         #Imperfection in Z tuning
+            delh=randn(4).*pi/50;         #Imperfection in Z tuning
             int1=kron(RZ(delh[1]),RZ(delh[2]));
             int2=exp(-im*J[j]*fonez-im*theta/2*(ftwox+ftwoy));
             int3=kron(RZ(delh[3]),RZ(delh[4]));
 
-            FU[j]=int3*int2*int1;
+            FU[j].=int3*int2*int1;
     end
 
 
