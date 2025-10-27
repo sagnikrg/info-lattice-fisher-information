@@ -7,6 +7,46 @@
 # This has to be accounted appropriately in the tev function.
 ##################################
 
+
+########################################################
+
+# The Brickwall as a Tensor Function
+# format
+
+# |     |     |     |     |     |     |     |  
+#---------------------------------------------
+#       |  2  |     |  4  |     |  6  |         
+#---------------------------------------------
+# |  1  |     |  3  |     |  5  |     |  7  |
+#---------------------------------------------
+# |     |     |     |     |     |     |     |
+
+########################################################
+
+
+
+
+    
+function itensorise(FUTensor, sites, dummysites)
+    L=length(FUTensor);
+    gates = ITensor[]
+    for i in 1:2:L
+        push!(gates, ITensor(FUTensor[i],dummysites[i+1],dummysites[i],sites[i+1],sites[i]))
+    end
+  
+
+    for i in 2:2:L
+        push!(gates, ITensor(FUTensor[i],sites[i+1],sites[i],dummysites[i+1],dummysites[i]))
+        end
+  
+    gates
+end
+
+########################################
+# time evolution with ITensor
+########################################
+
+
 function brickwall_tev(Psi, brick, sites, dummysites)
 
     L=length(brick)

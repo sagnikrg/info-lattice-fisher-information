@@ -74,6 +74,12 @@ end
 ;
 
 
+##################################
+#
+# Defining the kick and parity operators separately
+#
+##################################
+
 
 function kick(L,epsilon)
     g=pi*(1-epsilon);
