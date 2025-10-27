@@ -1,5 +1,3 @@
-using ITensors
-ITensors.disable_warn_order()
 
 
 # dependencies

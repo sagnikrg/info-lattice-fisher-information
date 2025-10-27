@@ -1,5 +1,13 @@
 
 
+#################################
+# Dependencies
+#################################
+
+include("brickwall.jl")
+
+
+
 
 function brickwall_dtc(L,thetamean,epsilon)
   
