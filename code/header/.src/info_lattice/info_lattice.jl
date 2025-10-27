@@ -120,8 +120,10 @@ end
 
 
 
-function info_lattice(Psi, L)
+function info_lattice(Psi)
     
+    L=size(Psi,1) |> log2 |> Int
+
     info_lattice_raw_t=info_lattice_raw(Psi,L)
     info_lattice_t= Vector{Vector{Float64}}(undef, L)
     info_lattice_t[1]=info_lattice_raw_t[1]
@@ -154,11 +156,11 @@ function info_lattice(U::Matrix{ComplexF64})
     eigvals,eigvecs=eigen(U);
 
     Psi=eigvecs[1,:]
-    infolattice=info_lattice(Psi, L)
+    infolattice=info_lattice(Psi)
 
     for i in 2:length(eigvals)
         Psi=eigvecs[i,:]
-        infolattice+=info_lattice(Psi,L)
+        infolattice+=info_lattice(Psi)
     end
 
     infolattice=infolattice./length(eigvals)
@@ -176,11 +178,11 @@ function info_lattice_brickwall(L::Int, theta::Float64, epsilon::Float64)
     eigvals,eigvecs=eigen(U);
 
     Psi=eigvecs[1,:]
-    infolattice=info_lattice(Psi, L)
+    infolattice=info_lattice(Psi)
 
     for i in 2:length(eigvals)
         Psi=eigvecs[i,:]
-        infolattice+=info_lattice(Psi,L)
+        infolattice+=info_lattice(Psi)
     end
 
     infolattice=infolattice./length(eigvals)
@@ -197,12 +199,12 @@ function info_lattice_proj(U::Matrix{ComplexF64}, indlist::Array{Int})
 
     Psi=eigvecs[1,:]
     Psi=projectatt(Psi, indlist)
-    infolattice=info_lattice(Psi, L)
+    infolattice=info_lattice(Psi)
 
     for i in 2:length(eigvals)
         Psi=eigvecs[i,:]
         Psi=projectatt(Psi, indlist)
-        infolattice+=info_lattice(Psi,L)
+        infolattice+=info_lattice(Psi)
     end
 
     infolattice=infolattice./length(eigvals)
