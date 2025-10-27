@@ -49,8 +49,7 @@ function circuit_dtc(L,thetamean,epsilon)
             int2=exp(-im*J[j]*fonez-im*theta/2*(ftwox+ftwoy));
             int3=kron(RZ(delh[3]),RZ(delh[4]));
 
-            FU[j]=int2
-            #int3*int2*int1;
+            FU[j]=int3*int2*int1;
 
     end
 

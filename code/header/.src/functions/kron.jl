@@ -20,9 +20,11 @@ end
 # For Listed Kronecker Product:
 
 function kron_list(List, ind)
+
+
     A=List[ind[1]];
     for i in 2:length(ind)
-    A=kron(A,List[i]);
+    A=kron(A,List[ind[i]]);
     end
     A 
 end

@@ -31,12 +31,12 @@ function brickwall(FU::Array{Array{ComplexF64,2},1})
 
         # for odd L
 
-        if L%2==1
+        #if L%2==1
         
 
-        UOdd=copy(kron(kron_list(FU,Indodd)),I(2));
-        UEven=copy(kron(I(2),kron_list(FU,Indeven)));
-        end
+        #UOdd=copy(kron(kron_list(FU,Indodd)),I(2));
+        #UEven=copy(kron(I(2),kron_list(FU,Indeven)));
+        #end
             
         A=UEven*UOdd;   
 
@@ -119,7 +119,6 @@ function brickwall(L,thetamean,epsilon)
 
         UOdd=copy(kron_list(FU,Indodd));
         UEven=copy(kron(I(2),kron_list(FU,Indeven),I(2)));
- 
         end
 
         # for odd L
