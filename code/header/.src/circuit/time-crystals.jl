@@ -83,14 +83,13 @@ function circuit_dtc(L,thetamean,epsilon)
     ############################################
 
     FU[1]=kron(RX(g),I(2))*FU[1];
-    FU[L-1]=kron(I(2),RX(g))*FU[L-1];
+    FU[end]=kron(I(2),RX(g))*FU[end];
 
 
 
     A=brickwall(FU)
 
     return A
-
 end
 ;
 
