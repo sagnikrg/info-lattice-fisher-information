@@ -81,7 +81,7 @@ end
 
 
 function circuit_heisenberg(L, thetamean)
-        Jmean=0.5*pi
+        Jmean=1.0
         A=circuit_heisenberg(L, Jmean, thetamean)
         return A
 end
