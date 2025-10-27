@@ -22,7 +22,7 @@ function circuit_heisenberg(L,thetamean)
  # Background Disorder for the Z field
  #########################################
 
-        h=rand(L)*2*pi;
+        h=rand(L)*pi;
         ZRow=RZ.(h);
 
 
