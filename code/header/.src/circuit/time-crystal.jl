@@ -72,3 +72,19 @@ function brickwall_dtc(L,thetamean,epsilon)
  A    
 end
 ;
+
+
+
+function kick(L,epsilon)
+    g=pi*(1-epsilon);
+    XRow=copy(kron_power(RX(g),L));
+    XRow
+
+end
+
+function parity(L)
+    
+    ZRow=copy(kron_power(Z,L));
+    ZRow
+
+end
