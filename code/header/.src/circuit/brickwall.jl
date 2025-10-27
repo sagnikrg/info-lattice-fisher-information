@@ -46,33 +46,21 @@ end
 ;
 
 
-#check header
 
-########################################################
-# The Brickwall as a Function 
-########################################################
 
-# For now we restrict to spin 1/2 systems, i.e. q-dits with level=2
+
+
+
+function brickwall_tensor(FU::Array{Array{ComplexF64,2},1})
+
+FUTensor=fill(fill(0.0*im, 2,2,2,2), length(FU));
+
+for i in 1:length(FU)
+      FUTensor[i]=reshape(FU[i],2,2,2,2)
+end
  
-
-
-########################################################
-
-# The Brickwall as a Tensor Function
-# format
-
-# |     |     |     |     |     |     |     |  
-#---------------------------------------------
-#       |  2  |     |  4  |     |  6  |         
-#---------------------------------------------
-# |  1  |     |  3  |     |  5  |     |  7  |
-#---------------------------------------------
-# |     |     |     |     |     |     |     |
-
-########################################################
-
-
-function brickwall_tensor(L,thetamean,epsilon)
+# Returning Brickwall:        
+FUTensor
 
 end
 ;
