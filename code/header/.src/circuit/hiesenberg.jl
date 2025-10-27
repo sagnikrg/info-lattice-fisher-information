@@ -9,7 +9,7 @@ include("brickwall.jl")
 
 
 
-function circuit_heisenberg(L,thetamean)
+function circuit_heisenberg(L,Jmean, thetamean)
   
     
 ###########################################    
@@ -22,7 +22,7 @@ function circuit_heisenberg(L,thetamean)
  # Background Disorder for the Z field
  #########################################
 
-        h=rand(L)*pi;
+        h=rand(L)*2*pi;
         ZRow=RZ.(h);
 
 
@@ -30,7 +30,8 @@ function circuit_heisenberg(L,thetamean)
  #Constructing the Random Brickwall 
  ###########################################
 
-        J=fill(1, L);             #F Fixed strength on ZZ
+        #J=fill(Jmean, L);             #F Fixed strength on ZZ
+        J=Jmean
         fonez=copy(kron(Z,Z))
         ftwox=copy(kron(X,X));    #For the two body XX+YY gates
         ftwoy=copy(kron(Y,Y));
@@ -49,7 +50,7 @@ function circuit_heisenberg(L,thetamean)
 
                 #delh=randn(4)*pi/50;                    #Imperfection in Z tuning not included
                 #int1=kron(RZ(delh[1]),RZ(delh[2]));
-                int2=exp(-im*J[j]*fonez-im*theta/2*(ftwox+ftwoy));
+                int2=exp(-im*J*fonez-im*theta/2*(ftwox+ftwoy));
                 #int3=kron(RZ(delh[3]),RZ(delh[4]));
 
                 FU[j]=int2;
@@ -75,3 +76,13 @@ function circuit_heisenberg(L,thetamean)
     return A
 end
 ;
+
+
+
+
+function circuit_heisenberg(L, thetamean)
+        Jmean=0.5*pi
+        A=circuit_heisenberg(L, Jmean, thetamean)
+        return A
+end
+  
