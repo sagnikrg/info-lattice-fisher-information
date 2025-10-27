@@ -202,3 +202,6 @@ function info_lattice_proj(U::Matrix{ComplexF64}, indlist::Array{Int})
 
     infolattice=infolattice./length(eigvals)
 end
+
+
+include("draw_info_lattice.jl")
