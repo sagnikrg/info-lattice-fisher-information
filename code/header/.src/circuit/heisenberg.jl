@@ -134,7 +134,7 @@ end
 
 function circuit_heisenberg(L::Int, thetamean::Float64)
         
-        J=rand(L)*pi;   
+        J=rand(L-1)*pi;   
         h=rand(L)*2*pi;
         
 
