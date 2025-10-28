@@ -11,6 +11,19 @@ include("brickwall.jl")
 
 
 ######################
+# This code generates Unitary Brickwall circuit corresponding to the heisenberg model;
+# Form: H = J ZZ +  θ/2 (XX+YY) + h Z
+# h is always disordered and uniformly sampled from [0, 2pi] 
+#
+# J has two options: One can use a uniform J=Jmean or sample J uniformly from [0, pi]
+# (See ###Coefficient of ZZ)
+#
+# In both case Jmean is still kept as in input as with the second option on, the Multiple Dispatch wrappers automatically 
+# takes care of including the correct Coefficient. 
+#
+#
+# options for including various noise models is coded and commented out
+#
 # The Skeleton function
 #######################
 
@@ -33,18 +46,22 @@ function circuit_heisenberg(L::Int,Jmean::Float64, thetamean::Float64, h::Array{
  #Constructing the Random Brickwall 
  ###########################################
 
-        #J=fill(Jmean, L);             #F Fixed strength on ZZ
+        #Coefficient of ZZ        
         
-        J=rand(L)*pi;             #Ising Even Disorder on the two body gates
-        #J=Jmean
-        fonez=copy(kron(Z,Z))
-        ftwox=copy(kron(X,X));    #For the two body XX+YY gates
-        ftwoy=copy(kron(Y,Y));
-
+        J=rand(L)*pi;                           #Ising Even Disorder on the two body gates
+        #J=fill(Jmean, L);                      #Fixed strength on ZZ
+        
+        
 
         #thetadev=pi/50;
-        theta=thetamean #+randn(1)[]*thetadev;                           #Interaction (Noise not included)
-                                  
+        theta=thetamean #+randn(1)[]*thetadev;  #Interaction (Noise not included)
+        
+        #For the two body XX+YY gates:
+
+        fonez=copy(kron(Z,Z))
+        ftwox=copy(kron(X,X));                  
+        ftwoy=copy(kron(Y,Y));
+
         #############################################
         # Defining two body gates as array of Tensors        
         ##############################################
