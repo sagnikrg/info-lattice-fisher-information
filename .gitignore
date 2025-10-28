@@ -5,10 +5,10 @@
 *.zip
 *.tar.gz
 *.h5
-*.hdf5
+#*.hdf5
 *.ai
 *.mp4
-*.png
+#*.png
 *jpg
 *.eps
 #*.bat
