@@ -9,7 +9,13 @@ include("brickwall.jl")
 
 
 
-function circuit_heisenberg(L,Jmean, thetamean)
+
+######################
+# The Skeleton function
+#######################
+
+
+function circuit_heisenberg(L::Int,Jmean::Float64, thetamean::Float64, h::Array{Float64})
   
     
 ###########################################    
@@ -17,12 +23,9 @@ function circuit_heisenberg(L,Jmean, thetamean)
 ###########################################
 
         Ind=collect(1:L)
-
  #########################################
  # Background Disorder for the Z field
  #########################################
-
-        h=rand(L)*2*pi;
         ZRow=RZ.(h);
 
 
@@ -78,11 +81,47 @@ end
 ;
 
 
+################################
+# Multiple Dispatch variations:
+#################################
 
 
-function circuit_heisenberg(L, thetamean)
-        Jmean=1.0
-        A=circuit_heisenberg(L, Jmean, thetamean)
+# implicitly drawing Disorder
+
+function circuit_heisenberg(L::Int, Jmean::Float64, thetamean::Float64)
+ 
+ 
+        # Background Disorder for the Z field
+ 
+        h=rand(L)*2*pi;
+        
+
+        A=circuit_heisenberg(L,Jmean, thetamean, h)
+        return A
+end
+
+# J=1, explicitly drawing Disorder
+
+
+function circuit_heisenberg(L::Int, thetamean::Float64, h::Array{Float64})
+        Jmean=1.0;    
+        
+
+        A=circuit_heisenberg(L,Jmean, thetamean, h)
+        return A
+end
+
+
+
+# implicitly drawing Disorder, J=1
+
+
+function circuit_heisenberg(L::Int, thetamean::Float64)
+        Jmean=1.0;    
+        h=rand(L)*2*pi;
+        
+
+        A=circuit_heisenberg(L,Jmean, thetamean, h)
         return A
 end
   
