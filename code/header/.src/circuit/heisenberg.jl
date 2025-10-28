@@ -18,7 +18,7 @@ include("brickwall.jl")
 # J has two options: One can use a uniform J=Jmean or sample J uniformly from [0, pi]
 # (See ###Coefficient of ZZ)
 #
-# In both case Jmean is still kept as in input as with the second option on, the Multiple Dispatch wrappers automatically 
+# Jmean is traded as in input for J, the Multiple Dispatch wrappers automatically 
 # takes care of including the correct Coefficient. 
 #
 #
@@ -28,7 +28,7 @@ include("brickwall.jl")
 #######################
 
 
-function circuit_heisenberg(L::Int,Jmean::Float64, thetamean::Float64, h::Array{Float64})
+function circuit_heisenberg(L::Int, thetamean::Float64, h::Array{Float64}, J::Array{Float64})
   
     
 ###########################################    
@@ -48,8 +48,8 @@ function circuit_heisenberg(L::Int,Jmean::Float64, thetamean::Float64, h::Array{
 
         #Coefficient of ZZ        
         
-        J=rand(L)*pi;                           #Ising Even Disorder on the two body gates
-        #J=fill(Jmean, L);                      #Fixed strength on ZZ
+        #J=rand(L)*pi;                           #Ising Even Disorder on the two body gates
+        #J=fill(Jmean, L);                       #Fixed strength on ZZ
         
         
 
@@ -68,15 +68,15 @@ function circuit_heisenberg(L::Int,Jmean::Float64, thetamean::Float64, h::Array{
   
         FU=fill(fill(0.0*im, 4,4), L-1);
   
-        for j in 1:L-1
+        for i in 1:L-1
 
                 #delh=randn(4)*pi/50;                                   #Imperfection in Z tuning not included
                 #int1=kron(RZ(delh[1]),RZ(delh[2]));
                 #int2=exp(-im*J*fonez-im*theta/2*(ftwox+ftwoy));
-                int2=exp(-im*J[j]*fonez-im*theta/2*(ftwox+ftwoy));
+                int2=exp(-im*J[i]*fonez-im*theta/2*(ftwox+ftwoy));
                 #int3=kron(RZ(delh[3]),RZ(delh[4]));
 
-                FU[j]=int2;
+                FU[i]=int2;
 
         end
 
@@ -94,7 +94,7 @@ function circuit_heisenberg(L::Int,Jmean::Float64, thetamean::Float64, h::Array{
 
 
 
-    #A=brickwall(FU)   # Construct the matrix using brickwall function
+    A=brickwall(FU)   # Construct the matrix using brickwall function
     
     #return FU
     return A
@@ -110,7 +110,7 @@ end
 
 # implicitly drawing Disorder
 
-function circuit_heisenberg(L::Int, Jmean::Float64, thetamean::Float64)
+function circuit_heisenberg(L::Int, thetamean::Float64, J::Array{Float64})
  
  
         # Background Disorder for the Z field
@@ -118,20 +118,14 @@ function circuit_heisenberg(L::Int, Jmean::Float64, thetamean::Float64)
         h=rand(L)*2*pi;
         
 
-        A=circuit_heisenberg(L,Jmean, thetamean, h)
+        A=circuit_heisenberg(L, thetamean, h, J)
         return A
 end
 
 # J=1, explicitly drawing Disorder
 
 
-function circuit_heisenberg(L::Int, thetamean::Float64, h::Array{Float64})
-        Jmean=1.0;    
-        
 
-        A=circuit_heisenberg(L,Jmean, thetamean, h)
-        return A
-end
 
 
 
@@ -139,11 +133,12 @@ end
 
 
 function circuit_heisenberg(L::Int, thetamean::Float64)
-        Jmean=1.0;    
+        
+        J=rand(L)*pi;   
         h=rand(L)*2*pi;
         
 
-        A=circuit_heisenberg(L,Jmean, thetamean, h)
+        A=circuit_heisenberg(L, thetamean, h, J)
         return A
 end
   
