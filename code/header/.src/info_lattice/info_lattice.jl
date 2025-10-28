@@ -212,3 +212,17 @@ end
 
 
 include("draw_info_lattice.jl")
+
+
+function lattice_to_vec(info_lattice_state)
+   
+    L=size(info_lattice_state)[1]
+
+    A=info_lattice_state[1][:]
+
+    for i in 2:L 
+        A=cat(A,info_lattice_state[i][:], dims=1 )
+    end
+
+    return A  
+end
