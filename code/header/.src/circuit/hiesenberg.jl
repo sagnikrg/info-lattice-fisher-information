@@ -34,14 +34,16 @@ function circuit_heisenberg(L::Int,Jmean::Float64, thetamean::Float64, h::Array{
  ###########################################
 
         #J=fill(Jmean, L);             #F Fixed strength on ZZ
-        J=Jmean
+        
+        J=rand(L)*pi;             #Ising Even Disorder on the two body gates
+        #J=Jmean
         fonez=copy(kron(Z,Z))
         ftwox=copy(kron(X,X));    #For the two body XX+YY gates
         ftwoy=copy(kron(Y,Y));
 
 
         #thetadev=pi/50;
-        theta=thetamean #+randn(1)[]*thetadev;    #Interaction (Noise not included)
+        theta=thetamean #+randn(1)[]*thetadev;                           #Interaction (Noise not included)
                                   
         #############################################
         # Defining two body gates as array of Tensors        
@@ -51,9 +53,10 @@ function circuit_heisenberg(L::Int,Jmean::Float64, thetamean::Float64, h::Array{
   
         for j in 1:L-1
 
-                #delh=randn(4)*pi/50;                    #Imperfection in Z tuning not included
+                #delh=randn(4)*pi/50;                                   #Imperfection in Z tuning not included
                 #int1=kron(RZ(delh[1]),RZ(delh[2]));
-                int2=exp(-im*J*fonez-im*theta/2*(ftwox+ftwoy));
+                #int2=exp(-im*J*fonez-im*theta/2*(ftwox+ftwoy));
+                int2=exp(-im*J[j]*fonez-im*theta/2*(ftwox+ftwoy));
                 #int3=kron(RZ(delh[3]),RZ(delh[4]));
 
                 FU[j]=int2;
@@ -74,9 +77,11 @@ function circuit_heisenberg(L::Int,Jmean::Float64, thetamean::Float64, h::Array{
 
 
 
-    A=brickwall(FU)   # Construct the matrix using brickwall function
-
+    #A=brickwall(FU)   # Construct the matrix using brickwall function
+    
+    #return FU
     return A
+
 end
 ;
 

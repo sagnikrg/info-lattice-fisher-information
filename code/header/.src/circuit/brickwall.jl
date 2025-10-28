@@ -46,8 +46,11 @@ end
 
 
 
-
-
+##
+#
+# i think it is a good idea to check the order of legs of this tensors now
+#
+##
 
 
 function brickwall_tensor(FU::Array{Array{ComplexF64,2},1})
