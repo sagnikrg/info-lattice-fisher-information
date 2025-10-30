@@ -50,5 +50,6 @@ function LevelSpacingRatio(EigA)
         end
 
     #histogram(n)
-mean(n)
+    #mean(n)
+    n
 end    
