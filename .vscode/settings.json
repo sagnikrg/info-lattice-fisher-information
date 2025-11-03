@@ -4,13 +4,13 @@
   "files.exclude": {
     "**/*.out": true,
     "**/*.aux": true,
-    //"**/*.log": true,
+    "**/*.log": true,
     "**/*.blg": true,
     "**/*.bcf": true,
     "**/*.xml": true,
     "**/*.bbl": true,
     "**/*.toc": true,
-    //"**/*.bat": true,
+    "**/*.bat": true,
 
     // Hide everything inside tex/src/header/ (but keep folder visible)
     "tex/.src/header/**": true,

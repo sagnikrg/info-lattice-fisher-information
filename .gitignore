@@ -36,7 +36,7 @@
 
 # ------data------
 !data/processed/*
-
+!.bat/headersync.log
 
 # -----images------
 

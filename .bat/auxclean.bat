@@ -3,7 +3,7 @@
 @echo off
 setlocal
 
-cd ..
+cd .\tex\.
 
 echo Deleting LaTeX auxiliary files...
 
