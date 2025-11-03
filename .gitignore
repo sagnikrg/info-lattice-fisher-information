@@ -8,7 +8,7 @@
 *.hdf5
 *.ai
 *.mp4
-#*.png
+*.png
 *jpg
 *.eps
 #*.bat
@@ -28,23 +28,29 @@
 
 ##----Still Backing UP------
 
+
+# --- log files for headersync and bibsync -----
+
+!/.bat/bibsync.log
+!.bat/headersync.log
+
+
 # --- test codes and plot scripts------
 
 !code/scripts/*.ipynb
 !code/test/*.ipynb
 
 
-# ------data------
+
+# ---processed data for plotting------
 !data/processed/*
-!.bat/headersync.log
+
 
 # -----images------
 
 !tex/.src/images/*
 !tex/plots/*
-
-
-
+!tex/notes/**/*.png
 
 
 

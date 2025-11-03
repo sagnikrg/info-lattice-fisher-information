@@ -1,0 +1,93 @@
+--------------------------------------------------------------------------------
+
+LOG FILE FOR BIB SYNC RUNS;
+
+--------------------------------------------------------------------------------
+
+
+
+-------------------------------------------------------------------------------
+- Initial Creation Note : (METADATA)
+-
+- Modelled after headersync as illustrated at the Initial Creation Note of headersync.log, but in this 
+- case deals with syncing .bib files from the repo notes/tex/.src/.bib
+- 
+- Also implemented on 03-11-2025  
+- 
+-
+- That master .bib repo is now available at : https://github.com/sagnikrg/notes/tex/.src/.bib
+-
+-
+- Automated logging facilities are similar to headersync and is generated in the same parent folder .bat/
+-
+- (Note: This folder is hidden in vscode through .vscode/settings.json
+-        To see this comment off the .bat and .log lines)
+-
+-
+- Sagnik (sagnikrg)
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+==== [03-11-2025 12:38:16.23] Header mirror run ====
+Repo        : info-lattice-fisher-information
+Source      : C:\Users\Ritam\OneDrive\Documents\Codespaces\notes\tex\.src\.bib
+Destination : C:\Users\Ritam\OneDrive\Documents\Codespaces\info-lattice-fisher-information\tex\.src\.bib
+Commit Msg  : bibsync init; new name convention adopted
+Commit Hash : 
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+  Started : 03 November 2025 12:38:16
+   Source : \tex\.src\.bib\
+     Dest : info-lattice-fisher-information\tex\.src\.bib\
+    Files : *.*
+	    
+  Options : *.* /FFT /TEE /S /E /DCOPY:T /COPY:DAT /PURGE /MIR /XJ /MT:8 /R:1 /W:1 
+------------------------------------------------------------------------------
+	  *EXTRA File 		    1260	info-lattice-fisher-information\tex\.src\.bib\adam-mipt.bib
+	  *EXTRA File 		     535	info-lattice-fisher-information\tex\.src\.bib\arnau-fisher-info.bib
+	  *EXTRA File 		    2975	info-lattice-fisher-information\tex\.src\.bib\artiaco-info-lattice.bib
+	  *EXTRA File 		    2415	info-lattice-fisher-information\tex\.src\.bib\vedika-dtc.bib
+	  *EXTRA File 		     639	info-lattice-fisher-information\tex\.src\.bib\xhek-mipt.bib
+	    Newer     		     410	\tex\.src\.bib\.bib.tex  0%  100%  
+	    New File  		    1260	\tex\.src\.bib\adam_mipt.bib100%  
+	    New File  		     535	\tex\.src\.bib\arnau_fisher_info.bib100%  
+	    New File  		    2975	\tex\.src\.bib\artiaco_info_lattice.bib100%  
+	    New File  		    5855	\tex\.src\.bib\david_dtc.bib100%  
+	    New File  		    5768	\tex\.src\.bib\david_metastability.bib100%  
+	    New File  		    1817	\tex\.src\.bib\dries_metastability.bib100%  
+	    New File  		    2317	\tex\.src\.bib\ising_model_foundations.bib100%  
+	    New File  		     667	\tex\.src\.bib\jordan_wigner_peierls.bib100%  
+	    New File  		    3514	\tex\.src\.bib\katarzyna_metastability.bib100%  
+	    New File  		    2014	\tex\.src\.bib\luis_metastability.bib100%  
+	    New File  		     395	\tex\.src\.bib\physics_qldpc.bib100%  
+	    New File  		    4325	\tex\.src\.bib\refs.bib100%  
+	    New File  		    2415	\tex\.src\.bib\vedika_dtc.bib100%  
+	    New File  		     653	\tex\.src\.bib\xhek_mipt.bib100%  
+------------------------------------------------------------------------------
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         1         0         0         0
+   Files :        15        15         0         0         0         5
+   Bytes :    34.1 k    34.1 k         0         0         0     7.6 k
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Speed :            7,76,000 Bytes/sec.
+   Speed :              44.403 MegaBytes/min.
+   Ended : 03 November 2025 12:38:16
+
+==== End of run ====
+
+
+
+
+
+
+

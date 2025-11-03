@@ -7,7 +7,7 @@ setlocal
 rem ====== USER CONFIG ======
 set "local_path=C:\Users\Ritam\OneDrive\Documents\Codespaces"
 rem Source header repo log path (you said this exists already)
-set "SOURCE_LOG=%local_path%\.header\log\headersync.log"
+set "SOURCE_LOG=%local_path%\notes\.bat\bibsync.log"
 rem =========================
 
 
@@ -27,13 +27,13 @@ echo Repo dir: "%repo_dir%"
 
 
 rem Paths
-set "SOURCE=%local_path%\.header\.header\.src"
-set "DEST=%repo_dir%\code\.header\.src"
+set "SOURCE=%local_path%\notes\tex\.src\.bib"
+set "DEST=%repo_dir%\tex\.src\.bib"
 set "REPO=%repo_dir%"
-set "MAIN_LOG=%repo_dir%\.bat\headersync.log"
-set "TMP_LOG=%repo_dir%\.bat\headersync.tmp"
-set "CLEAN_LOG=%repo_dir%\.bat\headersync_clean.tmp"
-set "SRC_REPO_DIR=%local_path%\.header"
+set "MAIN_LOG=%repo_dir%\.bat\bibsync.log"
+set "TMP_LOG=%repo_dir%\.bat\bibsync.tmp"
+set "CLEAN_LOG=%repo_dir%\.bat\bibsync_clean.tmp"
+set "SRC_REPO_DIR=%local_path%\notes"
 
 
 rem Prompt for a commit message
@@ -60,11 +60,11 @@ set "dst_prefix_b=%DEST%"
   for /f "usebackq delims=" %%L in ("%TMP_LOG%") do (
     set "line=%%L"
     rem Replace DEST first (shows up in *EXTRA File lines)
-    set "line=!line:%dst_prefix_a%=%repo_name%\code\.header\.src\!"
-    set "line=!line:%dst_prefix_b%=%repo_name%\code\.header\.src!"
+    set "line=!line:%dst_prefix_a%=%repo_name%\tex\.src\.bib\!"
+    set "line=!line:%dst_prefix_b%=%repo_name%\tex\.src\.bib\!"
     rem Replace SOURCE (shows up in 'Source :' and 'Newer' lines)
-    set "line=!line:%src_prefix_a%=.header\.src\!"
-    set "line=!line:%src_prefix_b%=.header\.src!"
+    set "line=!line:%src_prefix_a%=\tex\.src\.bib\!"
+    set "line=!line:%src_prefix_b%=\tex\.src\.bib\!"
     echo(!line!
   )
 ) > "%CLEAN_LOG%"
@@ -139,18 +139,18 @@ del "%TMP_LOG%" "%CLEAN_LOG%" >nul 2>&1
 
 
 rem === Git operations ===
-call :git_operations "%REPO%" "[header] %commitMessage%"
+call :git_operations "%REPO%" "[.bib] %commitMessage%"
 set "GIT_RESULT=%ERRORLEVEL%"
 
 if "%GIT_RESULT%"=="0" (
-    if not defined GIT_HASH set "GIT_HASH=[header] %commitMessage%"
+    if not defined GIT_HASH set "GIT_HASH=[.bib] %commitMessage%"
 ) else (
     set "GIT_HASH=GIT_ERROR_%GIT_RESULT%"
 )
 
 
-rem === Git operations: SOURCE (.header) repo ===
-call :git_operations "%SRC_REPO_DIR%" "[header] %commitMessage%"
+rem === Git operations: SOURCE (notes) repo ===
+call :git_operations "%SRC_REPO_DIR%" "[.bib] %commitMessage%"
 
 
 
