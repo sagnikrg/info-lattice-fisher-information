@@ -44,7 +44,7 @@ if not exist "%DEST%" mkdir "%DEST%"
 
 rem === Run robocopy to TEMP log ===
 @echo off
-robocopy "%SOURCE%" "%DEST%" /MIR /FFT /R:1 /W:1 /COPY:DAT /DCOPY:T /XJ /MT:8 /TEE /LOG:"%TMP_LOG%"
+robocopy "%SOURCE%" "%DEST%" /MIR /FFT /R:1 /W:1 /COPY:DAT /DCOPY:T /XJ /MT:8 /TEE /LOG:"%TMP_LOG%" /XF "*.tex"
 
 
 

@@ -114,3 +114,43 @@ info-lattice-fisher-information\code\.header\.src\functions\eigenstatistics.jlin
 
 
 
+
+==== [08-11-2025 15:15:41.44] Header mirror run ====
+Repo        : info-lattice-fisher-information
+Source      : C:\Users\Ritam\OneDrive\Documents\Codespaces\.header\.header\.src
+Destination : C:\Users\Ritam\OneDrive\Documents\Codespaces\info-lattice-fisher-information\code\.header\.src
+Commit Msg  : pulling the new eigstat func
+Commit Hash : 
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+  Started : 08 November 2025 15:15:41
+   Source : .header\.src\
+     Dest : info-lattice-fisher-information\code\.header\.src\
+    Files : *.*
+	    
+  Options : *.* /FFT /TEE /S /E /DCOPY:T /COPY:DAT /PURGE /MIR /XJ /MT:8 /R:1 /W:1 
+------------------------------------------------------------------------------
+	  *EXTRA File 		    1149	info-lattice-fisher-information\code\.header\.src\plotmods\finite-size-eigstat.jl
+	    Newer     		     196	.header\.src\eigen_statistics\eigen_statistics.jl100%  
+	    New File  		    1133	.header\.src\plotmods\circplot.jl100%  
+	    New File  		    2224	.header\.src\plotmods\finite_size_eigstat.jl100%  
+	    Newer     		     155	.header\.src\plotmods\plotmods.jl100%  
+------------------------------------------------------------------------------
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :        12        12        12         0         0         0
+   Files :        36         4        32         0         0         1
+   Bytes :    61.6 k     3.6 k    58.0 k         0         0     1.1 k
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Speed :            3,09,000 Bytes/sec.
+   Speed :              17.681 MegaBytes/min.
+   Ended : 08 November 2025 15:15:41
+
+==== End of run ====
+
+
+
+
+
+
+

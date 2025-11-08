@@ -10,12 +10,12 @@
     "**/*.xml": true,
     "**/*.bbl": true,
     "**/*.toc": true,
-    "**/*.bat": true,
+    //"**/*.bat": true,
 
     // Hide everything inside tex/src/header/ and folders touched by headersync, bibsync
     "tex/.src/header/**": true,
     "tex/.src/.bib/*.bib": true,
-    "code/.header/.src/**": true,
+    //"code/.header/.src/**": true,
 
 
     // Hide a specific script from workspace root
