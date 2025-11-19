@@ -145,7 +145,7 @@ file["L$(L)/compile/benchmark_time/eigen"]=string(Bnch_T2_eig-Bnch_T1_eig)
 
 # sorting the eigenvalues to get a patch:
 
-#eigvals,eigvecs =phase_ordered_eigvecs(eigvals,eigvecs)
+eigvals,eigvecs =phase_ordered_eigvecs(eigvals,eigvecs)
 
 # benchmarking info_lattice
 
@@ -203,13 +203,13 @@ close(file)
         
         # sorting the eigenvalues to get a patch:
 
-#        eigvals,eigvecs =phase_ordered_eigvecs(eigvals,eigvecs)
+        eigvals,eigvecs =phase_ordered_eigvecs(eigvals,eigvecs)
 
 
         ## Writing eigenvalues, benchmark_time
 
-#        file["L$(L)/theta$(theta)/Itr$(itr)/eigvals"]=eigvals;
-#        file["L$(L)/theta$(theta)/Itr$(itr)/benchmark_time/eigen"]=string(Bnch_T2_eig-Bnch_T1_eig)
+        file["L$(L)/theta$(theta)/Itr$(itr)/eigvals"]=eigvals;
+        file["L$(L)/theta$(theta)/Itr$(itr)/benchmark_time/eigen"]=string(Bnch_T2_eig-Bnch_T1_eig)
 
 
 
