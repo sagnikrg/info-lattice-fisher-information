@@ -29,11 +29,11 @@ include("../.header/.src/eigen_statistics/eigen_statistics.jl")
 
 # parameters
 
-L=10
+L=8
 N=2^L
 N_band=N
 
-Itrnumb=100
+Itrnumb=1000
 
 global thetalist=[collect(0.0:0.025:0.525); collect(0.6:0.05:1.6)]
 global epsilon=0.5    
@@ -104,7 +104,16 @@ file=h5open(dest_file_name,"cw")
 
  attrs["[Model] 8. Itrnumb"] = Itrnumb
 
- #attrs["[Model] 9. Band Size for Info Lattice"] = N_band
+#attrs["[Model] 9. Band Size for Info Lattice"] = N_band
+
+# Code
+
+script_content = read(@__FILE__, String)
+attrs["[ENV] 4. Code"] = script_content
+
+#circuit
+script_content = read("../.header/.src/circuit/time_crystals.jl", String)
+attrs["[ENV] 5. Circuit"] = script_content
 
 close(file)
 

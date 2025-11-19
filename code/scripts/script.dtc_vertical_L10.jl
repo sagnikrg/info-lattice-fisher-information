@@ -29,17 +29,17 @@ include("../.header/.src/eigen_statistics/eigen_statistics.jl")
 
 # parameters
 
-L=8
+L=10
 N=2^L
 N_band=N
 
-Itrnumb=100
+Itrnumb=400
 
 global thetalist=[collect(0.0:0.025:0.525); collect(0.6:0.05:1.6)]
 global epsilon=0.5    
 
 
-dest_file_name="../data/hiesenberg_transition_ordpar_L$(L).hdf5"
+dest_file_name="../data/dtc_vertical_transition_ordpar_L$(L).hdf5"
 
 
 #################################
@@ -90,7 +90,7 @@ file=h5open(dest_file_name,"cw")
 
  attrs["[Model] 3. Tuning parameter"]="theta"
  
- attrs["[Model] 4. Range of J"]="[1.0], Uniform"
+ attrs["[Model] 4. Range of J"]="[0, pi], Uniform"
 
  attrs["[Model] 5. Range of h"]="[0, 2pi], Uniform Sampling"
 
@@ -105,6 +105,16 @@ file=h5open(dest_file_name,"cw")
  attrs["[Model] 8. Itrnumb"] = Itrnumb
 
  #attrs["[Model] 9. Band Size for Info Lattice"] = N_band
+
+ # Code
+
+script_content = read(@__FILE__, String)
+attrs["[ENV] 4. Code"] = script_content
+
+#circuit
+script_content = read("../.header/.src/circuit/time_crystals.jl", String)
+attrs["[ENV] 5. Circuit"] = script_content
+
 
 close(file)
 
@@ -168,7 +178,8 @@ close(file)
         ## Drawing the Disorders
 
         
-        J=fill(1.0 ,(L-1));
+        #J=fill(1.0 ,(L-1));
+        J=rand(L-1)*pi;
         h=rand(L)*2*pi;
         
 
