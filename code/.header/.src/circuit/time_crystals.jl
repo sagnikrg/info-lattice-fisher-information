@@ -9,7 +9,7 @@ include("brickwall.jl")
 
 
 
-function circuit_dtc(L,thetamean,epsilon)
+function circuit_dtc(L,thetamean,epsilon, h, J)
   
     
 ###########################################    
@@ -22,7 +22,7 @@ function circuit_dtc(L,thetamean,epsilon)
  # Background Disorder for the Z field
  #########################################
 
-        h=rand(L)*2*pi;
+        #h=rand(L)*2*pi;
         ZRow=RZ.(h);
 
 
@@ -30,7 +30,7 @@ function circuit_dtc(L,thetamean,epsilon)
  #Constructing the Random Brickwall 
  ###########################################
 
-        J=rand(L)*pi;             #Ising Even Disorder on the two body gates
+        #J=rand(L)*pi;             #Ising Even Disorder on the two body gates
 
         fonez=copy(kron(Z,Z))
         ftwox=copy(kron(X,X));    #For the two body XX+YY gates
@@ -92,6 +92,26 @@ function circuit_dtc(L,thetamean,epsilon)
 
 
     A=brickwall(FU)   # Construct the matrix using brickwall function
+
+    return A
+end
+;
+
+function circuit_dtc(L,thetamean,epsilon)
+  
+    
+
+ #########################################
+ # Background Disorder for the Z field
+ #########################################
+
+        h=rand(L)*2*pi;
+        J=rand(L)*pi;             #Ising Even Disorder on the two body gates
+
+
+
+
+    A=circuit_dtc(L,thetamean,epsilon, h, J)   # Construct the matrix using brickwall function
 
     return A
 end
