@@ -39,7 +39,7 @@ global thetalist=[collect(0.0:0.025:0.525); collect(0.6:0.05:2.0)]
 global epsilon=1.0    
 
 
-dest_file_name="../data/hiesenberg_transition_ordpar_epsilon_1.0_J1.0_L$(L).hdf5"
+dest_file_name="../data/hiesenberg_transition_ordpar_clean_L$(L).hdf5"
 
 
 #################################
@@ -92,7 +92,7 @@ file=h5open(dest_file_name,"cw")
  
  attrs["[Model] 4. Range of J"]="[1.0], Uniform"
 
- attrs["[Model] 5. Range of h"]="[0, 2pi], Uniform Sampling"
+ attrs["[Model] 5. Range of h"]="[0, pi], Uniform Sampling"
 
  attrs["[Model] 6. Order parameters"]="eigenvalues"#, info_lattice"
  
@@ -178,7 +178,7 @@ close(file)
 
         
         J=fill(1.0 ,(L-1));
-        h=rand(L)*2*pi;
+        h=rand(L)*pi;
         
 
 
