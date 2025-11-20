@@ -232,3 +232,40 @@ Commit Hash :
 
 
 
+
+==== [20-11-2025 13:54:13.36] Header mirror run ====
+Repo        : info-lattice-fisher-information
+Source      : C:\Users\Ritam\OneDrive\Documents\Codespaces\info-lattice-fisher-information\code\.header\.src
+Destination : C:\Users\Ritam\OneDrive\Documents\Codespaces\.header\.header\.src
+Commit Msg  : [heisenberg.jl] brickwall, circuits split; tests added successfully
+Commit Hash : 
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+  Started : 20 November 2025 13:54:13
+   Source : .header\.src\
+     Dest : info-lattice-fisher-information\code\.header\.src\
+    Files : *.*
+	    
+  Options : *.* /FFT /TEE /S /E /DCOPY:T /COPY:DAT /PURGE /MIR /XJ /MT:8 /R:1 /W:1 
+------------------------------------------------------------------------------
+	    Newer     		    4067	.header\.src\circuit\heisenberg.jl100%  
+	    Newer     		    2915	.header\.src\info_lattice\draw_info_lattice.jl100%  
+------------------------------------------------------------------------------
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :        12        12        12         0         0         0
+   Files :        38         2        36         0         0         0
+   Bytes :    65.3 k     6.8 k    58.5 k         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Speed :           17,45,500 Bytes/sec.
+   Speed :              99.878 MegaBytes/min.
+   Ended : 20 November 2025 13:54:13
+
+==== End of run ====
+
+
+
+
+
+
+
