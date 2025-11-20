@@ -9,7 +9,19 @@ include("brickwall.jl")
 
 
 
-function circuit_dtc(L,thetamean,epsilon, h, J)
+
+
+
+
+
+ ###########################################
+ #The Brickwall 
+ #
+ ###########################################
+
+
+
+function brickwall_dtc(L::Int, thetamean::Float64, epsilon::Float64, h::Array{Float64}, J::Array{Float64})
   
     
 ###########################################    
@@ -19,10 +31,9 @@ function circuit_dtc(L,thetamean,epsilon, h, J)
         Ind=collect(1:L)
 
  #########################################
- # Background Disorder for the Z field
+ # Creating the Disorder for the Z field
  #########################################
 
-        #h=rand(L)*2*pi;
         ZRow=RZ.(h);
 
 
@@ -30,15 +41,15 @@ function circuit_dtc(L,thetamean,epsilon, h, J)
  #Constructing the Random Brickwall 
  ###########################################
 
-        #J=rand(L)*pi;             #Ising Even Disorder on the two body gates
+                  
 
-        fonez=copy(kron(Z,Z))
+        fonez=copy(kron(Z,Z))     #Ising Even Disorder on the two body gates through array J  
         ftwox=copy(kron(X,X));    #For the two body XX+YY gates
         ftwoy=copy(kron(Y,Y));
 
 
         thetadev=pi/50;
-        theta=thetamean+randn(1)[]*thetadev;    #Interaction
+        theta=thetamean+randn(1)[]*thetadev;                # Interaction + tuning noise
                                   
         #############################################
         # Defining two body gates as array of Tensors        
@@ -48,7 +59,7 @@ function circuit_dtc(L,thetamean,epsilon, h, J)
   
         for j in 1:L-1
 
-                delh=randn(4)*pi/50;                    #Imperfection in Z tuning
+                delh=randn(4)*pi/50;                        # Imperfection in Z tuning
                 int1=kron(RZ(delh[1]),RZ(delh[2]));
                 int2=exp(-im*J[j]*fonez-im*theta/2*(ftwox+ftwoy));
                 int3=kron(RZ(delh[3]),RZ(delh[4]));
@@ -91,11 +102,41 @@ function circuit_dtc(L,thetamean,epsilon, h, J)
 
 
 
-    A=brickwall(FU)   # Construct the matrix using brickwall function
+     return FU
+end
+;
 
+
+
+ ###########################################
+ #The circuit (As a Matrix)
+ #
+ ###########################################
+
+
+
+
+
+
+function circuit_dtc(L::Int, thetamean::Float64, epsilon::Float64, h::Array{Float64}, J::Array{Float64})
+
+    FU=brickwall_dtc(L, thetamean, epsilon, h, J)
+    A=brickwall(FU)   # Construct the matrix using brickwall function
     return A
 end
 ;
+
+
+
+
+
+
+################################
+# Multiple Dispatch variations:
+#################################
+
+
+# implicitly drawing Background Disorders h, J
 
 function circuit_dtc(L,thetamean,epsilon)
   
@@ -134,6 +175,8 @@ function kick(L,epsilon)
     XRow
 
 end
+
+
 
 function parity(L)
     
