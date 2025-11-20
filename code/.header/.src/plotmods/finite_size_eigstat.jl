@@ -1,9 +1,22 @@
 using CairoMakie
 using ColorSchemes
 
+#------------------------------------------------------------------------------
+# First we define the plots as insets
+# Then we will use the multiple dispatch to create a function with default axis
+# The other options should be automatically followed through;
+#------------------------------------------------------------------------------
 
-# without confidence bands
+include("finite_size_eigstat_dependencies.jl")
 
+include("finite_size_eigstat_inset.jl")
+
+
+#----------------------------------------------------------------
+#  Wrapper with a Default Axis:
+#----------------------------------------------------------------
+
+# Without Error Bands:
 
 function finite_size_eigstat(LList, WList, finitesizescaling, cmap)
     ############################################
@@ -20,11 +33,10 @@ function finite_size_eigstat(LList, WList, finitesizescaling, cmap)
     xlims!(ax, (WList[1], WList[end]))
 
     # define a consistent color palette
-    pal = cgrad(cmap, 2 * length(LList), categorical = true)
+     pal = cgrad(cmap, 6 * length(LList), categorical = true)
 
     for (i, L) in enumerate(LList)
-        col = pal[2 * length(LList) - 2 * i + 1]
-
+        col = pal[6 * i - 3 ]
 
         # mean line on top
         lines!(ax, WList, finitesizescaling[i, :];
@@ -36,8 +48,8 @@ function finite_size_eigstat(LList, WList, finitesizescaling, cmap)
 end
 
 
+# With Error Bands:
 
-# with confidence bands
 
 
 function finite_size_eigstat(LList, WList, finitesizescaling, lower, upper, cmap)
@@ -55,14 +67,13 @@ function finite_size_eigstat(LList, WList, finitesizescaling, lower, upper, cmap
     xlims!(ax, (WList[1], WList[end]))
 
     # define a consistent color palette
-    pal = cgrad(cmap, 2 * length(LList), categorical = true)
+       pal = cgrad(cmap, 6 * length(LList), categorical = true)
 
-    for (i, L) in enumerate(LList)
-        col = pal[2 * length(LList) - 2 * i + 1]
+        for (i, L) in enumerate(LList)
+        col = pal[6 * i - 3 ]
 
         # confidence band first (semi-transparent)
-        band!(ax, WList, lower[i, :], upper[i, :];
-              color = (col, 0.25))#, strokewidth = 0)
+        draw_error_band(ax, WList, lower[i, :], upper[i, :], col)
 
         # mean line on top
         lines!(ax, WList, finitesizescaling[i, :];
@@ -75,14 +86,17 @@ end
 
 
 
+
+#-------------------------------------------------------
 # Default ColorSchemes
+#-------------------------------------------------------
 
 
+# Plots
+        function finite_size_eigstat(LList, WList, finitesizescaling)
+            finite_size_eigstat(LList, WList, finitesizescaling, :viridis)
+        end
 
-function finite_size_eigstat(LList, WList, finitesizescaling)
-    finite_size_eigstat(LList, WList, finitesizescaling, :viridis)
-end
-
-function finite_size_eigstat(LList, WList, finitesizescaling, lower, upper)
-    finite_size_eigstat(LList, WList, finitesizescaling, lower, upper, :viridis)
-end
+        function finite_size_eigstat(LList, WList, finitesizescaling, lower, upper)
+            finite_size_eigstat(LList, WList, finitesizescaling, lower, upper, :viridis)
+        end
