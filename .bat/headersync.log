@@ -342,3 +342,40 @@ Commit Hash :
 
 
 
+
+==== [20-11-2025 14:53:45.27] Header mirror run ====
+Repo        : info-lattice-fisher-information
+Source      : C:\Users\Ritam\OneDrive\Documents\Codespaces\info-lattice-fisher-information\code\.header\.src
+Destination : C:\Users\Ritam\OneDrive\Documents\Codespaces\.header\.header\.src
+Commit Msg  : Abanin test finished; MeanLevelSpacingRatio Added
+Commit Hash : 
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+  Started : 20 November 2025 14:53:45
+   Source : .header\.src\
+     Dest : info-lattice-fisher-information\code\.header\.src\
+    Files : *.*
+	    
+  Options : *.* /FFT /TEE /S /E /DCOPY:T /COPY:DAT /PURGE /MIR /XJ /MT:8 /R:1 /W:1 
+------------------------------------------------------------------------------
+	    Newer     		    3456	.header\.src\circuit\abanin.jl100%  
+	    Newer     		    1691	.header\.src\eigen_statistics\level_spacing.jl100%  
+------------------------------------------------------------------------------
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :        12        12        12         0         0         0
+   Files :        39         2        37         0         0         0
+   Bytes :    69.5 k     5.0 k    64.4 k         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Speed :           12,86,750 Bytes/sec.
+   Speed :              73.628 MegaBytes/min.
+   Ended : 20 November 2025 14:53:45
+
+==== End of run ====
+
+
+
+
+
+
+

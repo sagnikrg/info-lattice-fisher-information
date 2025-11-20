@@ -5,6 +5,7 @@
 
 ### functions for building eigenstatics
 
+using StatsBase
 
 
 ################################
@@ -58,3 +59,8 @@ function LevelSpacingRatio(EigA)
     #mean(n)
     n
 end    
+
+
+function MeanLevelSpacingRatio(EigA)
+    return mean(LevelSpacingRatio(EigA))
+end
