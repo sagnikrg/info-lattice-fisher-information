@@ -379,3 +379,44 @@ Commit Hash :
 
 
 
+
+==== [11-03-2026 17:51:37.93] Header mirror run ====
+Repo        : info-lattice-fisher-information
+Source      : C:\Users\Ritam\OneDrive\Documents\Codespaces\.header\.header\.src
+Destination : C:\Users\Ritam\OneDrive\Documents\Codespaces\info-lattice-fisher-information\code\.header\.src
+Commit Msg  : pulling from .header after mbl_dtc sync
+Commit Hash : 
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+  Started : 11 March 2026 17:51:37
+   Source : .header\.src\
+     Dest : info-lattice-fisher-information\code\.header\.src\
+    Files : *.*
+	    
+  Options : *.* /FFT /TEE /S /E /DCOPY:T /COPY:DAT /PURGE /MIR /XJ /MT:8 /R:1 /W:1 
+------------------------------------------------------------------------------
+	    Older     		    1691	.header\.src\eigen_statistics\level_spacing.jl100%  
+	    Older     		    1355	.header\.src\circuit\brickwall.jl100%  
+	    New File  		     972	.header\.src\bootstrap\bootstrap.jl100%  
+	    New File  		     679	.header\.src\hdf5\hdf5_update_entry.jl100%  
+	    Older     		    3981	.header\.src\lazadires_diagram\lazadires_diagram.jl100%  
+	    Older     		    1207	.header\.src\lazadires_diagram\lazadires_diagram_plots.jl100%  
+------------------------------------------------------------------------------
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :        13        13        11         0         0         0
+   Files :        40         6        34         0         0         0
+   Bytes :    70.9 k     9.6 k    61.2 k         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Speed :            3,80,192 Bytes/sec.
+   Speed :              21.755 MegaBytes/min.
+   Ended : 11 March 2026 17:51:37
+
+==== End of run ====
+
+
+
+
+
+
+
